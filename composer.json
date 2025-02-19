@@ -1,0 +1,19 @@
+{
+    "name": "behindthep/brain-games",
+    "description": "01",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Behindthep\\BrainGames\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Alexey Kolvakh",
+            "email": "alex.kolvah@mail.ru"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
