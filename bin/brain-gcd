@@ -1,0 +1,4 @@
+#!/usr/bin/env php
+<?php
+
+print_r("Find the greatest common divisor of given numbers.\n");

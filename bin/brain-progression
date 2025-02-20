@@ -1,0 +1,4 @@
+#!/usr/bin/env php
+<?php
+
+print_r("What number is missing in this progression? \n");
