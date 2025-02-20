@@ -6,6 +6,13 @@
     "autoload": {
         "psr-4": {
             "Behindthep\\BrainGames\\": "src/"
+        },
+        "scripts": {
+            "lint": "phpcs -- --standard=PSR12 .",
+            "test": "phpunit",
+            "post-package-install": [  
+                "echo 'Команды после установки пакета:..'"
+            ]
         }
     },
     "authors": [
