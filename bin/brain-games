@@ -1,8 +1,11 @@
 #!/usr/bin/env php
-
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-showGreeting();
-// после namespaceow composer dump-autoload
+use Brain\Games\Utils\Hello;
+
+Hello\showGreeting();
+$userName = Hello\getUserName();
+
+# через packagelist добавить потом как зависимоти

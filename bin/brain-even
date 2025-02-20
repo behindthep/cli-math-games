@@ -3,6 +3,12 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-showGreeting();
+use Brain\Games\Utils\Hello;
+use Brain\Games\Games\Even;
 
-checkParity();
+Hello\showGreeting();
+$userName = Hello\getUserName();
+
+echo "Answer 'yes' if number even otherwise answer 'no'.\n";
+
+Even\checkParity($userName);
