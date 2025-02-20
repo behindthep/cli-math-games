@@ -1,19 +1,34 @@
 {
     "name": "behindthep/brain-games",
     "description": "01",
-    "type": "project",
+    "type": "library",
     "license": "MIT",
+    "bin": [
+        "bin/brain-games",
+        "bin/brain-calc",
+        "bin/brain-even",
+        "bin/brain-gcd",
+        "bin/brain-prime",
+        "bin/brain-progression"
+    ],
     "autoload": {
         "psr-4": {
             "Behindthep\\BrainGames\\": "src/"
         },
         "scripts": {
             "lint": "phpcs -- --standard=PSR12 .",
-            "test": "phpunit",
-            "post-package-install": [  
-                "echo 'Команды после установки пакета:..'"
-            ]
-        }
+            "test": "phpunit ПЕРЕНЕСТИ В MAKEFILE скрипты"
+        },
+        "files": [
+            "src/Utils/Hello.php",
+            "src/Utils/Input.php",
+            "src/Utils/Output.php",
+            "src/Games/Calc.php",
+            "src/Games/Even.php",
+            "src/Games/Gcd.php",
+            "src/Games/Prime.php",
+            "src/Games/Progression.php"
+        ]
     },
     "authors": [
         {
