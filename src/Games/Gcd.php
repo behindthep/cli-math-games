@@ -1,37 +1,29 @@
 <?php
 
-declare(strict_types=1);
+namespace Brain\Games\Games\Gcd;
 
-namespace Brain\Games\Gcd;
+use function Brain\Games\Engine\runGame;
 
-function checkParity(): void
+function findGcd(int $firstNum, int $secondNum): int
 {
-    $minNumberInRange = 1;
-    $maxNumberInRange = 25;
-    $checkingNumber = rand($minNumberInRange, $maxNumberInRange);
-
-    if ($checkingNumber % 2 === 0) {
-        $evened = true;
-    } else {
-        $evened = false;
+    if ($secondNum === 0) {
+        return abs($firstNum);
     }
+    return findGcd($secondNum, $firstNum % $secondNum);
+}
 
-    echo "Question: {$checkingNumber}\n";
-    echo "Your answer: ";
-    $answer = trim(fgets(STDIN));
+function play(): void
+{
+    $description = "Find the greatest common divisor of given numbers.";
 
-    $countOfRightAswers = 0;
-    while ($countOfRightAswers < 3) {
-        if (($answer === 'yes' && $evened === true) || ($answer === 'no' && $evened === false)) {
-            echo "Correct!\n";
-            $countOfRightAswers++;
-        } elseif (($answer === 'no' && $evened === true) || ($answer === 'yes' && $evened === false)) {
-            echo "'{$answer}' is wrong answer. Correct answer was '{$checkingNumber}'.\n";
-            echo "Let's try again, {USER_NAME}!\n";  
-            $countOfRightAswers = 0;                                                                          
-        } else {
-            echo "You can answer only 'yes' or 'no'.\n";
-        }
-    }
-    echo "Congratulations, {USER_NAME}!\n";
+    $generateGameData = function (): array {
+        $firstNum = rand(1, 25);
+        $secondNum = rand(1, 25);
+        $question = "{$firstNum} {$secondNum}";
+        $answer = (string)(findGcd($firstNum, $secondNum));
+
+        return [$question, $answer];
+    };
+
+    runGame($description, $generateGameData);
 }

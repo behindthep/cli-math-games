@@ -1,37 +1,32 @@
 <?php
 
-declare(strict_types=1);
+namespace Brain\Games\Games\Prime;
 
-namespace Brain\Games\Prime;
+use function Brain\Games\Engine\runGame;
 
-function checkParity(): void
+function isPrime(int $num): bool
 {
-    $minNumberInRange = 1;
-    $maxNumberInRange = 25;
-    $checkingNumber = rand($minNumberInRange, $maxNumberInRange);
-
-    if ($checkingNumber % 2 === 0) {
-        $evened = true;
-    } else {
-        $evened = false;
+    if ($num <= 1) {
+        return false;
     }
-
-    echo "Question: {$checkingNumber}\n";
-    echo "Your answer: ";
-    $answer = trim(fgets(STDIN));
-
-    $countOfRightAswers = 0;
-    while ($countOfRightAswers < 3) {
-        if (($answer === 'yes' && $evened === true) || ($answer === 'no' && $evened === false)) {
-            echo "Correct!\n";
-            $countOfRightAswers++;
-        } elseif (($answer === 'no' && $evened === true) || ($answer === 'yes' && $evened === false)) {
-            echo "'{$answer}' is wrong answer. Correct answer was '{$checkingNumber}'.\n";
-            echo "Let's try again, {USER_NAME}!\n";  
-            $countOfRightAswers = 0;                                                                          
-        } else {
-            echo "You can answer only 'yes' or 'no'.\n";
+    for ($i = 2; $i < (int) sqrt($num) + 1; $i++) {
+        if ($num % $i === 0) {
+            return false;
         }
     }
-    echo "Congratulations, {USER_NAME}!\n";
+    return true;
+}
+
+function play(): void
+{
+    $description = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+
+    $generateGameData = function (): array {
+        $question = rand(2, 20);
+        $answer = isPrime($question) ? 'yes' : 'no';
+
+        return [$question, $answer];
+    };
+
+    runGame($description, $generateGameData);
 }

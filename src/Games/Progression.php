@@ -1,37 +1,34 @@
 <?php
 
-declare(strict_types=1);
+namespace Brain\Games\Games\Prograssion;
 
-namespace Brain\Games\Progression;
+use function Brain\Games\Engine\runGame;
 
-function checkParity(): void
+function generateProgression(int $startElement, int $step, int $progressionLength): array
 {
-    $minNumberInRange = 1;
-    $maxNumberInRange = 25;
-    $checkingNumber = rand($minNumberInRange, $maxNumberInRange);
-
-    if ($checkingNumber % 2 === 0) {
-        $evened = true;
-    } else {
-        $evened = false;
+    $progression = [];
+    for ($i = 0; $i < $progressionLength; $i++) {
+        $progression[] = $startElement + $step * $i;
     }
+    return $progression;
+}
 
-    echo "Question: {$checkingNumber}\n";
-    echo "Your answer: ";
-    $answer = trim(fgets(STDIN));
+function play(): void
+{
+    $description = "What number is missing in the progression?";
 
-    $countOfRightAswers = 0;
-    while ($countOfRightAswers < 3) {
-        if (($answer === 'yes' && $evened === true) || ($answer === 'no' && $evened === false)) {
-            echo "Correct!\n";
-            $countOfRightAswers++;
-        } elseif (($answer === 'no' && $evened === true) || ($answer === 'yes' && $evened === false)) {
-            echo "'{$answer}' is wrong answer. Correct answer was '{$checkingNumber}'.\n";
-            echo "Let's try again, {USER_NAME}!\n";  
-            $countOfRightAswers = 0;                                                                          
-        } else {
-            echo "You can answer only 'yes' or 'no'.\n";
-        }
-    }
-    echo "Congratulations, {USER_NAME}!\n";
+    $generateGameData = function (): array {
+        $startElement = rand(1, 40);
+        $step = rand(2, 6);
+        $progressionLength = 8;
+        $progression = generateProgression($startElement, $step, $progressionLength);
+        $hiddenElementIndex = rand(0, 8 - 1);
+        $answer = "{$progression[$hiddenElementIndex]}";
+        $progression[$hiddenElementIndex] = '..';
+        $question = implode(' ', $progression);
+
+        return [$question, $answer];
+    };
+
+    runGame($description, $generateGameData);
 }

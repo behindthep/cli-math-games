@@ -1,37 +1,39 @@
 <?php
 
-declare(strict_types=1);
+namespace Brain\Games\Games\Calc;
 
-namespace Brain\Games\Calc;
+use function Brain\Games\Engine\runGame;
 
-function checkParity(): void
+function calculate(int $firstNum, int $secondNum, string $sign): int
 {
-    $minNumberInRange = 1;
-    $maxNumberInRange = 25;
-    $checkingNumber = rand($minNumberInRange, $maxNumberInRange);
-
-    if ($checkingNumber % 2 === 0) {
-        $evened = true;
-    } else {
-        $evened = false;
+    switch ($sign) {
+        case '+':
+            return $firstNum + $secondNum;
+        case '-':
+            return $firstNum - $secondNum;
+        case '*':
+            return $firstNum * $secondNum;
+        default:
+            throw new \Exception('There is no such operator: {$sign}.');
     }
+}
 
-    echo "Question: {$checkingNumber}\n";
-    echo "Your answer: ";
-    $answer = trim(fgets(STDIN));
+function play(): void
+{
+    $description = "What is the result of the expression?";
 
-    $countOfRightAswers = 0;
-    while ($countOfRightAswers < 3) {
-        if (($answer === 'yes' && $evened === true) || ($answer === 'no' && $evened === false)) {
-            echo "Correct!\n";
-            $countOfRightAswers++;
-        } elseif (($answer === 'no' && $evened === true) || ($answer === 'yes' && $evened === false)) {
-            echo "'{$answer}' is wrong answer. Correct answer was '{$checkingNumber}'.\n";
-            echo "Let's try again, {USER_NAME}!\n";  
-            $countOfRightAswers = 0;                                                                          
-        } else {
-            echo "You can answer only 'yes' or 'no'.\n";
-        }
-    }
-    echo "Congratulations, {USER_NAME}!\n";
+    $generateGameData = function (): array {
+        $firstNum = rand(1, 10);
+        $secondNum = rand(1, 10);
+
+        $mapSign = ['+', '-', '*'];
+        $sign = $mapSign[array_rand($mapSign)];
+
+        $question = "{$firstNum} {$sign} {$secondNum}";
+        $answer = (string)(calculate($firstNum, $secondNum, $sign));
+
+        return [$question, $answer];
+    };
+
+    runGame($description, $generateGameData);
 }
