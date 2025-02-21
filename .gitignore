@@ -1,1 +1,8 @@
 /vendor/
+/.vscode/
+.idea
+logs
+*.swo
+*.swp
+*.cache
+build
