@@ -1,11 +1,13 @@
 #!/usr/bin/env php
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+$autoloadPath1 = __DIR__ . '/../../../autoload.php';
+$autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
 
-use Brain\Games\Utils\Hello;
+if (file_exists($autoloadPath1)) {
+    require_once $autoloadPath1;
+} else {
+    require_once $autoloadPath2;
+}
 
-Hello\showGreeting();
-$userName = Hello\getUserName();
-
-# через packagelist добавить потом как зависимоти
+Brain\Games\Cli\run();
