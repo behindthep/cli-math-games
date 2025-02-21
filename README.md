@@ -28,5 +28,3 @@ make install
 ## Usage
 
 [![asciicast](https://asciinema.org/a/dPpaict6EciPd4DomEFMJQF4K.svg)](https://asciinema.org/a/dPpaict6EciPd4DomEFMJQF4K)
-
-![asciicast](https://asciinema.org/a/dPpaict6EciPd4DomEFMJQF4K.svg)
