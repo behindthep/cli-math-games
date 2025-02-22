@@ -15,7 +15,7 @@ function play(): void
 
     $generateGameData = function (): array {
         $question = rand(1, 25);
-        $answer = isEven($question) ? 'yes' : 'no';
+        $answer   = isEven($question) ? 'yes' : 'no';
 
         return [$question, $answer];
     };

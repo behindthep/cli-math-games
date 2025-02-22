@@ -23,14 +23,14 @@ function play(): void
     $description = "What is the result of the expression?";
 
     $generateGameData = function (): array {
-        $firstNum = rand(1, 10);
+        $firstNum  = rand(1, 10);
         $secondNum = rand(1, 10);
 
-        $mapSign = ['+', '-', '*'];
-        $sign = $mapSign[array_rand($mapSign)];
+        $mapSign   = ['+', '-', '*'];
+        $sign      = $mapSign[array_rand($mapSign)];
 
-        $question = "{$firstNum} {$sign} {$secondNum}";
-        $answer = (string)(calculate($firstNum, $secondNum, $sign));
+        $question  = "{$firstNum} {$sign} {$secondNum}";
+        $answer    = (string) (calculate($firstNum, $secondNum, $sign));
 
         return [$question, $answer];
     };
