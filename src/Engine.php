@@ -7,6 +7,11 @@ use function cli\prompt;
 
 const ROUNDS_NUMBER = 3;
 
+/**
+* cli\prompt signature:
+* cli\prompt($question, $default = false, $marker = ':')
+* https://github.com/wp-cli/php-cli-tools?tab=readme-ov-file#function-list
+*/
 function runGame(string $description, callable $generateGameData): void
 {
     line("Welcome to the Brain Games!");
