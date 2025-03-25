@@ -20,7 +20,7 @@
     ], 
     "autoload": {
         "psr-4": {
-            "Behindthep\\BrainGames\\": "src/"
+            "BrainGames\\": "src/"
         },
         "files": [
             "src/Cli.php",
