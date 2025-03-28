@@ -1,24 +1,28 @@
 <?php
 
-namespace Brain\Games\Games\Even;
+namespace Brain\Games\Games;
 
-use function Brain\Games\Engine\runGame;
+use Brain\Games\Engine;
 
-function isEven(int $num): bool
+class Even implements GameInterface
 {
-    return $num % 2 === 0;
-}
+    private function isEven(int $num): bool
+    {
+        return $num % 2 === 0;
+    }
 
-function play(): void
-{
-    $description = "Answer 'yes' if the number is even, otherwise answer 'no'.";
+    public function play(): void
+    {
+        $description = "Answer 'yes' if the number is even, otherwise answer 'no'.";
 
-    $generateGameData = function (): array {
-        $question = rand(1, 25);
-        $answer   = isEven($question) ? 'yes' : 'no';
+        $generateGameData = function (): array {
+            $question = rand(1, 25);
+            $answer   = $this->isEven($question) ? 'yes' : 'no';
 
-        return [$question, $answer];
-    };
+            return [$question, $answer];
+        };
 
-    runGame($description, $generateGameData);
+        $game = new Engine();
+        $game->runGame($description, $generateGameData);
+    }
 }

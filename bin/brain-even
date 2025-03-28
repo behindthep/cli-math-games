@@ -10,4 +10,7 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-Brain\Games\Games\Even\play();
+use Brain\Games\Games\Even;
+
+$evenGame = new Even();
+$evenGame->play();

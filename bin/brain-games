@@ -10,4 +10,7 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-Brain\Games\Cli\run();
+use Brain\Games\Cli;
+
+$greeting = new Cli();
+$greeting->run();

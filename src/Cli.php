@@ -1,14 +1,16 @@
 <?php
 
-namespace Brain\Games\Cli;
+namespace Brain\Games;
 
-use function cli\line;
-use function cli\prompt;
+use function cli\{line, prompt};
 
-function run(): void
+class Cli
 {
-    line("Welcome to the Brain Game!");
-    // prompt signature: cli\prompt($question, $default = false, $marker = ':')
-    $name = prompt("May I have your name?", marker: ' ');
-    line("Hello, {$name}!");
+    public function run(): void
+    {
+        line("Welcome to the Brain Game!");
+        // prompt signature: cli\prompt($question, $default = false, $marker = ':')
+        $name = prompt("May I have your name?", marker: ' ');
+        line("Hello, {$name}!");
+    }
 }

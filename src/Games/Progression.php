@@ -1,37 +1,41 @@
 <?php
 
-namespace Brain\Games\Games\Prograssion;
+namespace Brain\Games\Games;
 
-use function Brain\Games\Engine\runGame;
+use Brain\Games\Engine;
 
-function generateProgression(int $startElement, int $step, int $progressionLength): array
+class Progression implements GameInterface
 {
-    $progression = [];
+    private function generateProgression(int $startElement, int $step, int $progressionLength): array
+    {
+        $progression = [];
 
-    for ($i = 0; $i < $progressionLength; $i++) {
-        $progression[] = $startElement + $step * $i;
+        for ($i = 0; $i < $progressionLength; $i++) {
+            $progression[] = $startElement + $step * $i;
+        }
+
+        return $progression;
     }
 
-    return $progression;
-}
+    public function play(): void
+    {
+        $description = "What number is missing in the progression?";
 
-function play(): void
-{
-    $description = "What number is missing in the progression?";
+        $generateGameData = function (): array {
+            $startElement       = rand(1, 40);
+            $step               = rand(2, 6);
+            $progressionLength  = 8;
+            $progression        = $this->generateProgression($startElement, $step, $progressionLength);
 
-    $generateGameData = function (): array {
-        $startElement       = rand(1, 40);
-        $step               = rand(2, 6);
-        $progressionLength  = 8;
-        $progression        = generateProgression($startElement, $step, $progressionLength);
+            $hiddenElementIndex = rand(0, 8 - 1);
+            $answer             = "{$progression[$hiddenElementIndex]}";
+            $progression[$hiddenElementIndex] = '..';
+            $question           = implode(' ', $progression);
 
-        $hiddenElementIndex = rand(0, 8 - 1);
-        $answer             = "{$progression[$hiddenElementIndex]}";
-        $progression[$hiddenElementIndex] = '..';
-        $question           = implode(' ', $progression);
+            return [$question, $answer];
+        };
 
-        return [$question, $answer];
-    };
-
-    runGame($description, $generateGameData);
+        $game = new Engine();
+        $game->runGame($description, $generateGameData);
+    }
 }

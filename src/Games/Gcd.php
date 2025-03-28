@@ -1,30 +1,34 @@
 <?php
 
-namespace Brain\Games\Games\Gcd;
+namespace Brain\Games\Games;
 
-use function Brain\Games\Engine\runGame;
+use Brain\Games\Engine;
 
-function findGcd(int $firstNum, int $secondNum): int
+class Gcd implements GameInterface
 {
-    if ($secondNum === 0) {
-        return abs($firstNum);
+    private function findGcd(int $firstNum, int $secondNum): int
+    {
+        if ($secondNum === 0) {
+            return abs($firstNum);
+        }
+
+        return $this->findGcd($secondNum, $firstNum % $secondNum);
     }
 
-    return findGcd($secondNum, $firstNum % $secondNum);
-}
+    public function play(): void
+    {
+        $description = "Find the greatest common divisor of given numbers.";
 
-function play(): void
-{
-    $description = "Find the greatest common divisor of given numbers.";
+        $generateGameData = function (): array {
+            $firstNum  = rand(1, 25);
+            $secondNum = rand(1, 25);
+            $question  = "{$firstNum} {$secondNum}";
+            $answer    = (string) ($this->findGcd($firstNum, $secondNum));
 
-    $generateGameData = function (): array {
-        $firstNum  = rand(1, 25);
-        $secondNum = rand(1, 25);
-        $question  = "{$firstNum} {$secondNum}";
-        $answer    = (string) (findGcd($firstNum, $secondNum));
+            return [$question, $answer];
+        };
 
-        return [$question, $answer];
-    };
-
-    runGame($description, $generateGameData);
+        $game = new Engine();
+        $game->runGame($description, $generateGameData);
+    }
 }
