@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a15befcc8b51998bc9be26da1c107f39",
+    "content-hash": "61b4c000857da63a0cc3a7f7c90fa43c",
     "packages": [
         {
             "name": "wp-cli/php-cli-tools",
-            "version": "v0.12.1",
+            "version": "v0.12.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-cli/php-cli-tools.git",
-                "reference": "d1fe500378f53fb5ae1072c0daa77095c384a082"
+                "reference": "fbb9c6eb83c04ee99b0c01454b47f47ab0e432bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/php-cli-tools/zipball/d1fe500378f53fb5ae1072c0daa77095c384a082",
-                "reference": "d1fe500378f53fb5ae1072c0daa77095c384a082",
+                "url": "https://api.github.com/repos/wp-cli/php-cli-tools/zipball/fbb9c6eb83c04ee99b0c01454b47f47ab0e432bc",
+                "reference": "fbb9c6eb83c04ee99b0c01454b47f47ab0e432bc",
                 "shasum": ""
             },
             "require": {
@@ -65,24 +65,82 @@
             ],
             "support": {
                 "issues": "https://github.com/wp-cli/php-cli-tools/issues",
-                "source": "https://github.com/wp-cli/php-cli-tools/tree/v0.12.1"
+                "source": "https://github.com/wp-cli/php-cli-tools/tree/v0.12.4"
             },
-            "time": "2024-10-01T11:13:49+00:00"
+            "time": "2025-03-05T14:35:01+00:00"
         }
     ],
     "packages-dev": [
         {
-            "name": "squizlabs/php_codesniffer",
-            "version": "3.11.3",
+            "name": "phpstan/phpstan",
+            "version": "2.1.11",
             "source": {
                 "type": "git",
-                "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "ba05f990e79cbe69b9f35c8c1ac8dca7eecc3a10"
+                "url": "https://github.com/phpstan/phpstan.git",
+                "reference": "8ca5f79a8f63c49b2359065832a654e1ec70ac30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/ba05f990e79cbe69b9f35c8c1ac8dca7eecc3a10",
-                "reference": "ba05f990e79cbe69b9f35c8c1ac8dca7eecc3a10",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/8ca5f79a8f63c49b2359065832a654e1ec70ac30",
+                "reference": "8ca5f79a8f63c49b2359065832a654e1ec70ac30",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0"
+            },
+            "conflict": {
+                "phpstan/phpstan-shim": "*"
+            },
+            "bin": [
+                "phpstan",
+                "phpstan.phar"
+            ],
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHPStan - PHP Static Analysis Tool",
+            "keywords": [
+                "dev",
+                "static analysis"
+            ],
+            "support": {
+                "docs": "https://phpstan.org/user-guide/getting-started",
+                "forum": "https://github.com/phpstan/phpstan/discussions",
+                "issues": "https://github.com/phpstan/phpstan/issues",
+                "security": "https://github.com/phpstan/phpstan/security/policy",
+                "source": "https://github.com/phpstan/phpstan-src"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/ondrejmirtes",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/phpstan",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-03-24T13:45:00+00:00"
+        },
+        {
+            "name": "squizlabs/php_codesniffer",
+            "version": "3.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
+                "reference": "2d1b63db139c3c6ea0c927698e5160f8b3b8d630"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/2d1b63db139c3c6ea0c927698e5160f8b3b8d630",
+                "reference": "2d1b63db139c3c6ea0c927698e5160f8b3b8d630",
                 "shasum": ""
             },
             "require": {
@@ -149,11 +207,11 @@
                     "type": "open_collective"
                 },
                 {
-                    "url": "https://thanks.dev/phpcsstandards",
+                    "url": "https://thanks.dev/u/gh/phpcsstandards",
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2025-01-23T17:04:15+00:00"
+            "time": "2025-03-18T05:04:51+00:00"
         }
     ],
     "aliases": [],
