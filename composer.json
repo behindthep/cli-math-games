@@ -10,28 +10,24 @@
     ],
     "description": "CLI utilits",
     "type": "project",
-    "license": "MIT",
-    "minimum-stability": "stable",
     "authors": [
         {
             "name": "Alexey Kolvakh",
             "email": "alex.kolvah@mail.ru"
         }
     ], 
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Brain\\Games\\": "src/"
+            "Brain\\Games\\": "src"
         }
     },
-    "scripts": {
-        "phpcs": "phpcs -- --standard=PSR12 ."
-    },
     "require": {
-        "php": ">=8.0",
         "wp-cli/php-cli-tools": "^0.12.1"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "*",
         "phpstan/phpstan": "^2.1"
-    }
+    },
+    "license": "MIT"
 }
