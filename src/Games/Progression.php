@@ -6,7 +6,7 @@ use Brain\Games\Engine;
 
 class Progression implements GameInterface
 {
-    private function generateProgression(int $startElement, int $step, int $progressionLength): array
+    private static function generateProgression(int $startElement, int $step, int $progressionLength): array
     {
         $progression = [];
 
@@ -17,7 +17,7 @@ class Progression implements GameInterface
         return $progression;
     }
 
-    public function play(): void
+    public static function play(): void
     {
         $description = "What number is missing in the progression?";
 
@@ -25,7 +25,7 @@ class Progression implements GameInterface
             $startElement       = rand(1, 40);
             $step               = rand(2, 6);
             $progressionLength  = 8;
-            $progression        = $this->generateProgression($startElement, $step, $progressionLength);
+            $progression        = self::generateProgression($startElement, $step, $progressionLength);
 
             $hiddenElementIndex = rand(0, 8 - 1);
             $answer             = "{$progression[$hiddenElementIndex]}";

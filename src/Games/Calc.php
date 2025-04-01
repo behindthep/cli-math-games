@@ -6,7 +6,7 @@ use Brain\Games\Engine;
 
 class Calc implements GameInterface
 {
-    private function calculate(int $firstNum, int $secondNum, string $sign): int
+    private static function calculate(int $firstNum, int $secondNum, string $sign): int
     {
         switch ($sign) {
             case '+':
@@ -20,7 +20,7 @@ class Calc implements GameInterface
         }
     }
 
-    public function play(): void
+    public static function play(): void
     {
         $description = "What is the result of the expression?";
 
@@ -32,7 +32,7 @@ class Calc implements GameInterface
             $sign      = $mapSign[array_rand($mapSign)];
 
             $question  = "{$firstNum} {$sign} {$secondNum}";
-            $answer    = (string) ($this->calculate($firstNum, $secondNum, $sign));
+            $answer    = (string) (self::calculate($firstNum, $secondNum, $sign));
 
             return [$question, $answer];
         };

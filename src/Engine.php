@@ -6,7 +6,7 @@ use function cli\{line, prompt};
 
 class Engine
 {
-    public function runGame(string $description, callable $generateGameData): void
+    public static function runGame(string $description, callable $generateGameData): void
     {
         line("Welcome to the Brain Games!");
         // prompt signature: cli\prompt($question, $default = false, $marker = ':')

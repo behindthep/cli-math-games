@@ -12,5 +12,4 @@ if (file_exists($autoloadPath1)) {
 
 use Brain\Games\Games\Even;
 
-$evenGame = new Even();
-$evenGame->play();
+Even::play();

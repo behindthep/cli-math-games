@@ -12,5 +12,4 @@ if (file_exists($autoloadPath1)) {
 
 use Brain\Games\Cli;
 
-$greeting = new Cli();
-$greeting->run();
+Cli::run();

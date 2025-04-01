@@ -6,16 +6,16 @@ use Brain\Games\Engine;
 
 class Gcd implements GameInterface
 {
-    private function findGcd(int $firstNum, int $secondNum): int
+    private static function findGcd(int $firstNum, int $secondNum): int
     {
         if ($secondNum === 0) {
             return abs($firstNum);
         }
 
-        return $this->findGcd($secondNum, $firstNum % $secondNum);
+        return self::findGcd($secondNum, $firstNum % $secondNum);
     }
 
-    public function play(): void
+    public static function play(): void
     {
         $description = "Find the greatest common divisor of given numbers.";
 
@@ -23,7 +23,7 @@ class Gcd implements GameInterface
             $firstNum  = rand(1, 25);
             $secondNum = rand(1, 25);
             $question  = "{$firstNum} {$secondNum}";
-            $answer    = (string) ($this->findGcd($firstNum, $secondNum));
+            $answer    = (string) (self::findGcd($firstNum, $secondNum));
 
             return [$question, $answer];
         };

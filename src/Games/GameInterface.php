@@ -4,5 +4,5 @@ namespace Brain\Games\Games;
 
 interface GameInterface
 {
-    public function play(): void;
+    public static function play(): void;
 }

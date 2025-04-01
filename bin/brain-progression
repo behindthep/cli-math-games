@@ -12,5 +12,4 @@ if (file_exists($autoloadPath1)) {
 
 use Brain\Games\Games\Progression;
 
-$prograssionGame = new Progression();
-$prograssionGame->play();
+Progression::play();
