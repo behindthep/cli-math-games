@@ -13,15 +13,8 @@
 
 ## Installation
 
-1. Clone this repository to an empty directory:
-
 ```bash
 git clone git@github.com:behindthep/brain-games.git
-```
-
-2. Install project dependencies:
-
-```bash
 make install
 ```
 
