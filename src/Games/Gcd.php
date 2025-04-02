@@ -29,7 +29,6 @@ class Gcd implements GameInterface
             return [$question, $answer];
         };
 
-        $game = new Engine();
-        $game->runGame($description, $generateGameData);
+        Engine::runGame($description, $generateGameData);
     }
 }
