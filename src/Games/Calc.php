@@ -3,6 +3,7 @@
 namespace Brain\Games\Games;
 
 use Brain\Games\Engine;
+use Brain\Games\Games\Interfaces\GameInterface;
 
 class Calc implements GameInterface
 {

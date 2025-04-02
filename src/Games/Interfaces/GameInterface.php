@@ -1,6 +1,6 @@
 <?php
 
-namespace Brain\Games\Games;
+namespace Brain\Games\Games\Interfaces;
 
 interface GameInterface
 {
