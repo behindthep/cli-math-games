@@ -2,9 +2,9 @@
 
 [![Actions Status](https://github.com/hexlet-boilerplates/php-package/workflows/PHP%20CI/badge.svg)](https://github.com/behindthep/brain-games/actions)
 
-## Specification
+**«Brain games»** is a set of five console games. Each game asks questions that must be answered correctly. After three correct answers, the game is considered completed. Wrong answers end the game and prompt you to play it again. 
 
-**«Brain games»** is a set of five console games. Each game asks questions that must be answered correctly. After three correct answers, the game is considered completed. Wrong answers end the game and prompt you to play it again. Games:
+Games:
 - Calculator.
 - Progression. Finding missing numbers in a sequence of numbers.
 - Definition of an even number.
