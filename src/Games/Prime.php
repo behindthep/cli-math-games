@@ -1,20 +1,27 @@
 <?php
 
-namespace Brain\Games\Games;
+namespace BrainGames\Games;
 
-use Brain\Games\Engine;
-use Brain\Games\Games\Interfaces\GameInterface;
+use BrainGames\Engine;
 
-class Prime implements GameInterface
+class Prime
 {
-    private static function isPrime(int $num): bool
+    private const DESCRIPTION = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+
+    private function isPrime(int $num): bool
     {
         if ($num <= 1) {
             return false;
         }
+        if ($num === 2) {
+            return true;
+        }
+        if ($num % 2 === 0) {
+            return false;
+        }
 
-        for ($i = 2; $i < (int) sqrt($num) + 1; $i++) {
-            if ($num % $i === 0) {
+        for ($divisor = 3, $sqrt = (int) sqrt($num); $divisor <= $sqrt; $divisor += 2) {
+            if ($num % $divisor === 0) {
                 return false;
             }
         }
@@ -22,17 +29,24 @@ class Prime implements GameInterface
         return true;
     }
 
-    public static function play(): void
+    private function generateData(): array
     {
-        $description = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+        $data = [];
 
-        $generateGameData = function (): array {
-            $question = rand(2, 20);
-            $answer   = self::isPrime($question) ? 'yes' : 'no';
+        for ($i = 1; $i <= Engine::ROUNDS_COUNT; $i++) {
+            $question = rand(1, 100);
+            $answer = $this->isPrime($question) ? 'yes' : 'no';
 
-            return [$question, $answer];
+            $data[] = [$question, $answer];
         };
 
-        Engine::runGame($description, $generateGameData);
+        return $data;
+    }
+
+    public static function run()
+    {
+        $instance = new self();
+        $data = $instance->generateData();
+        Engine::playGame($data, self::DESCRIPTION);
     }
 }

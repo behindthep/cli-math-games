@@ -1,34 +1,42 @@
 <?php
 
-namespace Brain\Games\Games;
+namespace BrainGames\Games;
 
-use Brain\Games\Engine;
-use Brain\Games\Games\Interfaces\GameInterface;
+use BrainGames\Engine;
 
-class Gcd implements GameInterface
+class Gcd
 {
-    private static function findGcd(int $firstNum, int $secondNum): int
+    private const DESCRIPTION = 'Find the greatest common divisor of given numbers.';
+
+    private function getGcd(int $number1, int $number2): int
     {
-        if ($secondNum === 0) {
-            return abs($firstNum);
+        if ($number1 === 0) {
+            return $number2;
         }
 
-        return self::findGcd($secondNum, $firstNum % $secondNum);
+        return $this->getGcd($number2 % $number1, $number1);
     }
 
-    public static function play(): void
+    private function generateData(): array
     {
-        $description = "Find the greatest common divisor of given numbers.";
+        $data = [];
 
-        $generateGameData = function (): array {
-            $firstNum  = rand(1, 25);
-            $secondNum = rand(1, 25);
-            $question  = "{$firstNum} {$secondNum}";
-            $answer    = (string) (self::findGcd($firstNum, $secondNum));
+        for ($i = 1; $i <= Engine::ROUNDS_COUNT; $i++) {
+            $number1 = rand(1, 20);
+            $number2 = rand(1, 20);
+            $answer = (string) $this->getGcd($number1, $number2);
+            $question = "{$number1} {$number2}";
 
-            return [$question, $answer];
+            $data[] = [$question, $answer];
         };
 
-        Engine::runGame($description, $generateGameData);
+        return $data;
+    }
+
+    public static function run()
+    {
+        $instance = new self();
+        $data = $instance->generateData();
+        Engine::playGame($data, self::DESCRIPTION);
     }
 }

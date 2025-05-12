@@ -1,43 +1,50 @@
 <?php
 
-namespace Brain\Games\Games;
+namespace BrainGames\Games;
 
-use Brain\Games\Engine;
-use Brain\Games\Games\Interfaces\GameInterface;
+use BrainGames\Engine;
 
-class Calc implements GameInterface
+class Calc
 {
-    private static function calculate(int $firstNum, int $secondNum, string $sign): int
+    private const DESCRIPTION = 'What is the result of the expression?';
+    private const OPERATORS = ['+', '-', '*'];
+
+    private function calculate(int $number1, int $number2, string $operator): int
     {
-        switch ($sign) {
+        switch ($operator) {
             case '+':
-                return $firstNum + $secondNum;
+                return $number1 + $number2;
             case '-':
-                return $firstNum - $secondNum;
+                return $number1 - $number2;
             case '*':
-                return $firstNum * $secondNum;
+                return $number1 * $number2;
             default:
-                throw new \Exception('There is no such operator: {$sign}.');
+                throw new \Exception('unknown operator');
         }
     }
 
-    public static function play(): void
+    private function generateData(): array
     {
-        $description = "What is the result of the expression?";
+        $data = [];
 
-        $generateGameData = function (): array {
-            $firstNum  = rand(1, 10);
-            $secondNum = rand(1, 10);
+        for ($i = 1; $i <= Engine::ROUNDS_COUNT; $i++) {
+            $number1 = rand(1, 20);
+            $number2 = rand(1, 20);
+            $operator = self::OPERATORS[array_rand(self::OPERATORS)];
 
-            $mapSign   = ['+', '-', '*'];
-            $sign      = $mapSign[array_rand($mapSign)];
+            $question = "{$number1} {$operator} {$number2}";
+            $answer = (string) $this->calculate($number1, $number2, $operator);
 
-            $question  = "{$firstNum} {$sign} {$secondNum}";
-            $answer    = (string) (self::calculate($firstNum, $secondNum, $sign));
-
-            return [$question, $answer];
+            $data[] = [$question, $answer];
         };
 
-        Engine::runGame($description, $generateGameData);
+        return $data;
+    }
+
+    public static function run(): void
+    {
+        $instance = new self();
+        $data = $instance->generateData();
+        Engine::playGame($data, self::DESCRIPTION);
     }
 }

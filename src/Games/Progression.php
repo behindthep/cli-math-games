@@ -1,41 +1,49 @@
 <?php
 
-namespace Brain\Games\Games;
+namespace BrainGames\Games;
 
-use Brain\Games\Engine;
-use Brain\Games\Games\Interfaces\GameInterface;
+use BrainGames\Engine;
 
-class Progression implements GameInterface
+class Progression
 {
-    private static function generateProgression(int $startElement, int $step, int $progressionLength): array
+    private const DESCRIPTION = 'What number is missing in the progression?';
+    private const PROGRESSION_LENGTH = 10;
+
+    private function getProgression(int $firstNumber, int $step, int $length): array
     {
         $progression = [];
 
-        for ($i = 0; $i < $progressionLength; $i++) {
-            $progression[] = $startElement + $step * $i;
+        for ($i = $firstNumber; count($progression) <= $length; $i += $step) {
+            $progression[] = $i;
         }
 
         return $progression;
     }
 
-    public static function play(): void
+    private function generateData(): array
     {
-        $description = "What number is missing in the progression?";
+        $data = [];
 
-        $generateGameData = function (): array {
-            $startElement       = rand(1, 40);
-            $step               = rand(2, 6);
-            $progressionLength  = 8;
-            $progression        = self::generateProgression($startElement, $step, $progressionLength);
+        for ($i = 1; $i <= Engine::ROUNDS_COUNT; $i++) {
+            $firstNumber = rand(1, 50);
+            $step = rand(1, 10);
+            $progression = $this->getProgression($firstNumber, $step, self::PROGRESSION_LENGTH);
 
-            $hiddenElementIndex = rand(0, 8 - 1);
-            $answer             = "{$progression[$hiddenElementIndex]}";
-            $progression[$hiddenElementIndex] = '..';
-            $question           = implode(' ', $progression);
+            $hiddenItemIndex = array_rand($progression);
+            $answer = (string) $progression[$hiddenItemIndex];
+            $progression[$hiddenItemIndex] = '..';
+            $question = implode(' ', $progression);
 
-            return [$question, $answer];
+            $data[] = [$question, $answer];
         };
 
-        Engine::runGame($description, $generateGameData);
+        return $data;
+    }
+
+    public static function run()
+    {
+        $instance = new self();
+        $data = $instance->generateData();
+        Engine::playGame($data, self::DESCRIPTION);
     }
 }

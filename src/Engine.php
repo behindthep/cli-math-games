@@ -1,33 +1,34 @@
 <?php
 
-namespace Brain\Games;
+namespace BrainGames;
 
-use function cli\{line, prompt};
+use function cli\{
+    line,
+    prompt,
+};
 
 class Engine
 {
-    public static function runGame(string $description, callable $generateGameData): void
+    public const ROUNDS_COUNT = 3;
+
+    public static function playGame(array $data, string $description): void
     {
         line("Welcome to the Brain Games!");
-        // prompt signature: cli\prompt($question, $default = false, $marker = ':')
-        $name = prompt("May I have your name?", marker: ' ');
-        line("Hello, {$name}!");
+        $name = prompt("May I have your name?");
+        line("Hello, %s!", $name);
         line($description);
 
-        for ($i = 0, $roundsNumber = 3; $i < $roundsNumber; $i++) {
-            [$question, $answer] = $generateGameData();
-
+        foreach ($data as [$question, $answer]) {
             line("Question: {$question}");
+            $userAnswer = strtolower(trim(prompt("Your answer")));
 
-            $playerAnswer = strtolower(trim(prompt("Your answer")));
-
-            if ($playerAnswer === $answer) {
-                line("Correct!");
-            } else {
-                line("'{$playerAnswer}' is wrong answer. Correct answer was '{$answer}'.");
+            if ($userAnswer !== $answer) {
+                line("'{$userAnswer}' is wrong answer. Correct answer was '{$answer}'.");
                 line("Let's try again, {$name}!");
                 return;
             }
+
+            line("Correct!");
         }
 
         line("Congratulations, {$name}!");

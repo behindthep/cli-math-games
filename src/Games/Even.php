@@ -1,28 +1,36 @@
 <?php
 
-namespace Brain\Games\Games;
+namespace BrainGames\Games;
 
-use Brain\Games\Engine;
-use Brain\Games\Games\Interfaces\GameInterface;
+use BrainGames\Engine;
 
-class Even implements GameInterface
+class Even
 {
-    private static function isEven(int $num): bool
+    private const DESCRIPTION = 'Answer "yes" if the number is even, otherwise answer "no".';
+
+    private function isEven(int $num): bool
     {
         return $num % 2 === 0;
     }
 
-    public static function play(): void
+    private function generateData(): array
     {
-        $description = "Answer 'yes' if the number is even, otherwise answer 'no'.";
+        $data = [];
 
-        $generateGameData = function (): array {
-            $question = rand(1, 25);
-            $answer   = self::isEven($question) ? 'yes' : 'no';
+        for ($i = 1; $i <= Engine::ROUNDS_COUNT; $i++) {
+            $question = rand(1, 100);
+            $answer = $this->isEven($question) ? 'yes' : 'no';
 
-            return [$question, $answer];
+            $data[] = [$question, $answer];
         };
 
-        Engine::runGame($description, $generateGameData);
+        return $data;
+    }
+
+    public static function run(): void
+    {
+        $instance = new self();
+        $data = $instance->generateData();
+        Engine::playGame($data, self::DESCRIPTION);
     }
 }
