@@ -1,23 +1,31 @@
 # cli-mini-games
 
-[![Actions Status](https://github.com/hexlet-boilerplates/php-package/workflows/PHP%20CI/badge.svg)](https://github.com/behindthep/brain-games/actions)
+[![PHP CI](https://github.com/hexlet-boilerplates/php-package/workflows/PHP%20CI/badge.svg)](https://github.com/behindthep/brain-games/actions/workflows/php-ci.yml)
 
-**«Brain games»** is a set of five console games. Each game asks questions that must be answered correctly. After three correct answers, the game is considered completed. Wrong answers end the game and prompt you to play it again. 
+This package includes 5 simple math games to be launched as CLI.
 
-Games:
-- Calculator.
-- Progression. Finding missing numbers in a sequence of numbers.
-- Definition of an even number.
-- Determination of the greatest common divisor.
-- Definition of a prime number.
+- You need to answer whether a given number is even or not.
+- Adding, subtraction or multiplication of two values.
+- You'll get two numbers and you'll have to calculate their gratest common divisor.
+- You need to calculate missed arithmetic progression term.
+- You need to define whether the displayed number is prime or not.
 
 ## Installation
 
 ```bash
-git clone git@github.com:behindthep/brain-games.git
 make install
 ```
 
 ## Usage
+
+```bash
+make brain-even
+make brain-calc
+make brain-gcd
+make brain-progression
+make brain-prime
+```
+
+## Game Example
 
 [![asciicast](https://asciinema.org/a/dPpaict6EciPd4DomEFMJQF4K.svg)](https://asciinema.org/a/dPpaict6EciPd4DomEFMJQF4K)
