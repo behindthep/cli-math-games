@@ -1,52 +1,50 @@
 <?php
 
-namespace BrainGames\Games;
+namespace BrainGames\Games\Prime;
 
-use BrainGames\Engine;
+use function BrainGames\Engine\playGame;
 
-class Prime
+use const BrainGames\Engine\ROUNDS_COUNT;
+
+const DESCRIPTION = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+
+function isPrime(int $num): bool
 {
-    private const DESCRIPTION = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-
-    private function isPrime(int $num): bool
-    {
-        if ($num <= 1) {
-            return false;
-        }
-        if ($num === 2) {
-            return true;
-        }
-        if ($num % 2 === 0) {
-            return false;
-        }
-
-        for ($divisor = 3, $sqrt = (int) sqrt($num); $divisor <= $sqrt; $divisor += 2) {
-            if ($num % $divisor === 0) {
-                return false;
-            }
-        }
-
+    if ($num <= 1) {
+        return false;
+    }
+    if ($num === 2) {
         return true;
     }
-
-    private function generateData(): array
-    {
-        $data = [];
-
-        for ($i = 1; $i <= Engine::ROUNDS_COUNT; $i++) {
-            $question = rand(1, 100);
-            $answer = $this->isPrime($question) ? 'yes' : 'no';
-
-            $data[] = [$question, $answer];
-        };
-
-        return $data;
+    if ($num % 2 === 0) {
+        return false;
     }
 
-    public static function run()
-    {
-        $instance = new self();
-        $data = $instance->generateData();
-        Engine::playGame($data, self::DESCRIPTION);
+    for ($divisor = 3, $sqrt = (int) sqrt($num); $divisor <= $sqrt; $divisor += 2) {
+        if ($num % $divisor === 0) {
+            return false;
+        }
     }
+
+    return true;
+}
+
+function generateData(): array
+{
+    $data = [];
+
+    for ($i = 1; $i <= ROUNDS_COUNT; $i++) {
+        $question = rand(1, 100);
+        $answer = isPrime($question) ? 'yes' : 'no';
+
+        $data[] = [$question, $answer];
+    };
+
+    return $data;
+}
+
+function run()
+{
+    $data = generateData();
+    playGame($data, DESCRIPTION);
 }

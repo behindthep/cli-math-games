@@ -1,5 +1,5 @@
 {
-    "name": "behindthep/brain-games",
+    "name": "behindthep/cli-games",
     "description": "CLI games",
     "authors": [
         {
@@ -21,10 +21,17 @@
     "autoload": {
         "psr-4": {
             "BrainGames\\": "src/"
-        }
+        },
+        "files": [
+            "src/Games/Calc.php",
+            "src/Games/Even.php",
+            "src/Games/Gcd.php",
+            "src/Games/Prime.php",
+            "src/Games/Progression.php",
+            "src/Engine.php"
+        ]
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "*",
-        "phpunit/phpunit": "^12.1"
+        "squizlabs/php_codesniffer": "*"
     }
 }

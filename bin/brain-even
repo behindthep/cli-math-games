@@ -1,5 +1,4 @@
 #!/usr/bin/env php
-
 <?php
 
 $autoloadPath1 = __DIR__ . '/../../../autoload.php';
@@ -10,4 +9,4 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-BrainGames\Games\Even::run();
+BrainGames\Games\Even\run();

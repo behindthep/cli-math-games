@@ -1,36 +1,34 @@
 <?php
 
-namespace BrainGames\Games;
+namespace BrainGames\Games\Even;
 
-use BrainGames\Engine;
+use function BrainGames\Engine\playGame;
 
-class Even
+use const BrainGames\Engine\ROUNDS_COUNT;
+
+const DESCRIPTION = 'Answer "yes" if the number is even, otherwise answer "no".';
+
+function isEven(int $num): bool
 {
-    private const DESCRIPTION = 'Answer "yes" if the number is even, otherwise answer "no".';
+    return $num % 2 === 0;
+}
 
-    private function isEven(int $num): bool
-    {
-        return $num % 2 === 0;
-    }
+function generateData(): array
+{
+    $data = [];
 
-    private function generateData(): array
-    {
-        $data = [];
+    for ($i = 1; $i <= ROUNDS_COUNT; $i++) {
+        $question = rand(1, 100);
+        $answer = isEven($question) ? 'yes' : 'no';
 
-        for ($i = 1; $i <= Engine::ROUNDS_COUNT; $i++) {
-            $question = rand(1, 100);
-            $answer = $this->isEven($question) ? 'yes' : 'no';
+        $data[] = [$question, $answer];
+    };
 
-            $data[] = [$question, $answer];
-        };
+    return $data;
+}
 
-        return $data;
-    }
-
-    public static function run(): void
-    {
-        $instance = new self();
-        $data = $instance->generateData();
-        Engine::playGame($data, self::DESCRIPTION);
-    }
+function run(): void
+{
+    $data = generateData();
+    playGame($data, DESCRIPTION);
 }
