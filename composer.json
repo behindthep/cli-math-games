@@ -1,5 +1,5 @@
 {
-    "name": "behindthep/cli-mini-games",
+    "name": "behindthep/cli-math-games",
     "version": "0.0.1",
     "bin": [
       "bin/brain-even",
