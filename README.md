@@ -1,31 +1,46 @@
 # cli-mini-games
 
-[![PHP CI](https://github.com/hexlet-boilerplates/php-package/workflows/PHP%20CI/badge.svg)](https://github.com/behindthep/brain-games/actions/workflows/php-ci.yml)
+[![Github Actions Status](https://github.com/behindthep/cli-mini-games/actions/workflows/phpci.yml/badge.svg)](https://github.com/behindthep/cli-mini-games/actions)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=behindthep_cli-mini-games&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=behindthep_cli-mini-games)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=behindthep_cli-mini-games&metric=bugs)](https://sonarcloud.io/summary/new_code?id=behindthep_cli-mini-games)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=behindthep_cli-mini-games&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=behindthep_cli-mini-games)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=behindthep_cli-mini-games&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=behindthep_cli-mini-games)
 
-This package includes 5 simple math games to be launched as CLI.
 
-- You need to answer whether a given number is even or not.
+This package includes 5 math games:
+- Answer whether a given number is even or not.
 - Adding, subtraction or multiplication of two values.
-- You'll get two numbers and you'll have to calculate their gratest common divisor.
-- You need to calculate missed arithmetic progression term.
-- You need to define whether the displayed number is prime or not.
+- Get two numbers and calculate their gratest common divisor.
+- Calculate missed arithmetic progression term.
+- Define whether the displayed number is prime or not.
 
-## Installation
+## Prerequisites
+
+* Linux
+* PHP >=8.2
+* Make
+* Git
+
+## Setup
 
 ```bash
 make install
 ```
 
+## Run linter
+
+```sh
+make lint
+```
+
 ## Usage
 
 ```bash
-make brain-even
-make brain-calc
-make brain-gcd
-make brain-progression
-make brain-prime
+make even
+make calc
+make gcd
+make progression
+make prime
 ```
-
-## Game Example
 
 [![asciicast](https://asciinema.org/a/dPpaict6EciPd4DomEFMJQF4K.svg)](https://asciinema.org/a/dPpaict6EciPd4DomEFMJQF4K)

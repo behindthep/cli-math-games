@@ -29,6 +29,5 @@ function generateData(): array
 
 function run(): void
 {
-    $data = generateData();
-    playGame($data, DESCRIPTION);
+    playGame(generateData(), DESCRIPTION);
 }

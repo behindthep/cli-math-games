@@ -33,8 +33,7 @@ function generateData(): array
     return $data;
 }
 
-function run()
+function run(): void
 {
-    $data = generateData();
-    playGame($data, DESCRIPTION);
+    playGame(generateData(), DESCRIPTION);
 }

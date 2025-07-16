@@ -4,7 +4,7 @@ namespace BrainGames\Engine;
 
 use function cli\{
     line,
-    prompt,
+    prompt
 };
 
 const ROUNDS_COUNT = 3;

@@ -1,26 +1,27 @@
-setup:
+install:
 	composer install
 
-brain-even:
-	bin/brain-even
+even:
+	bin/even
 
-brain-calc:
-	bin/brain-calc
+calc:
+	bin/calc
 
-brain-gcd:
-	bin/brain-gcd
+gcd:
+	bin/gcd
 
-brain-progression:
-	bin/brain-progression
+progression:
+	bin/progression
 
-brain-prime:
-	bin/brain-prime
+prime:
+	bin/prime
 
-validate:
-	composer validate
+console:
+	composer exec --verbose psysh
 
 lint:
-	composer exec --verbose phpcs -- --standard=PSR12 src bin
+	composer exec --verbose phpcs -- src bin
+	composer exec --verbose phpstan
 
 lint-fix:
 	composer exec --verbose phpcbf -- src bin

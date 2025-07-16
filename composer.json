@@ -1,37 +1,49 @@
 {
-    "name": "behindthep/cli-games",
-    "description": "CLI games",
-    "authors": [
-        {
-            "name": "Alexey Kolvakh",
-            "email": "al.kolv19@gmail.com"
-        }
-    ], 
-    "require": {
-        "wp-cli/php-cli-tools": "^0.12.1"
-    },
-    "license": "MIT",
+    "name": "behindthep/cli-mini-games",
+    "version": "0.0.1",
     "bin": [
-        "bin/brain-even",
-        "bin/brain-calc",
-        "bin/brain-gcd",
-        "bin/brain-progression",
-        "bin/brain-prime"
+      "bin/brain-even",
+      "bin/brain-calc",
+      "bin/brain-gcd",
+      "bin/brain-progression",
+      "bin/brain-prime"
     ],
+    "type": "library",
+    "authors": [
+      {
+        "name": "Alexey Kolvakh",
+        "email": "al.kolv19@gmail.com"
+      }
+    ],
+    "description": "CLI games",
+    "license": "MIT",
     "autoload": {
-        "psr-4": {
-            "BrainGames\\": "src/"
-        },
-        "files": [
-            "src/Games/Calc.php",
-            "src/Games/Even.php",
-            "src/Games/Gcd.php",
-            "src/Games/Prime.php",
-            "src/Games/Progression.php",
-            "src/Engine.php"
-        ]
+      "psr-4": {
+        "BrainGames\\": "src/"
+      },
+      "files": [
+        "src/Games/Calc.php",
+        "src/Games/Even.php",
+        "src/Games/Gcd.php",
+        "src/Games/Prime.php",
+        "src/Games/Progression.php",
+        "src/Engine.php"
+      ]
+    },
+    "require": {
+      "wp-cli/php-cli-tools": "^0.12.1"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "*"
+      "psy/psysh": "@stable",
+      "phpstan/phpstan-phpunit": "^2.0",
+      "phpstan/extension-installer": "^1.3",
+      "symfony/var-dumper": "^7.2",
+      "squizlabs/php_codesniffer": "*",
+      "phpstan/phpstan": "^2.1"
+    },
+    "config": {
+      "allow-plugins": {
+        "phpstan/extension-installer": true
+      }
     }
 }
