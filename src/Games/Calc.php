@@ -19,7 +19,7 @@ function calculate(int $number1, int $number2, string $operator): int
         case '*':
             return $number1 * $number2;
         default:
-            throw new \Exception('unknown operator');
+            throw new \UnexpectedValueException('unknown operator');
     }
 }
 
