@@ -10,23 +10,25 @@ const DESCRIPTION = 'Answer "yes" if given number is prime. Otherwise answer "no
 
 function isPrime(int $num): bool
 {
-    if ($num <= 1) {
-        return false;
-    }
-    if ($num === 2) {
-        return true;
-    }
-    if ($num % 2 === 0) {
-        return false;
-    }
+    $result = true;
 
-    for ($divisor = 3, $sqrt = (int) sqrt($num); $divisor <= $sqrt; $divisor += 2) {
-        if ($num % $divisor === 0) {
-            return false;
+    if ($num <= 1) {
+        $result = false;
+    } elseif ($num === 2) {
+        $result = true;
+    } elseif ($num % 2 === 0) {
+        $result = false;
+    } else {
+        $sqrt = (int) sqrt($num);
+        for ($divisor = 3; $divisor <= $sqrt; $divisor += 2) {
+            if ($num % $divisor === 0) {
+                $result = false;
+                break;
+            }
         }
     }
 
-    return true;
+    return $result;
 }
 
 function generateData(): array
